@@ -13,9 +13,14 @@ jobs:
         run: |
           sudo apt install -y build-essential procps curl file git
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-          test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
-          test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
-          echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
+          # echo "PATH=$(brew --prefix)/bin:$(brew --prefix)/sbin:$PATH" >> $GITHUB_ENV
+          test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+          test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+          # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          # test -d ~/.linuxbrew && eval $(~/.linuxbrew/bin/brew shellenv)
+          # test -r ~/.bash_profile && echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.bash_profile
+          # echo "eval \$($(brew --prefix)/bin/brew shellenv)" >>~/.profile
           brew update
           brew install python gcc libxml2 libxmlsec1 pkg-config
           pip3 install --upgrade setuptools wheel build
