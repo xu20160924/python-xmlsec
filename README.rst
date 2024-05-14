@@ -67,6 +67,7 @@ so you need to download and install it manually.
    wget http://xmlsoft.org/sources/libxml2-2.9.1.tar.gz
    tar -xvf libxml2-2.9.1.tar.gz
    cd libxml2-2.9.1
+   ./autogen.sh
    ./configure && make && make install
 
 
